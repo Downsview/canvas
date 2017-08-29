@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户交互</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas');
+
+        //将canvas传入，该方法会返回一个包含属性x和y的对象
+        var mouse = utils.captureMouse(canvas);
+
+        //为canvas绑定mousedown事件，当鼠标按下的时候打印出当前鼠标相对于canvas的坐标值
+        canvas.addEventListener('mousedown', function () {
+          console.log("当前距离canvas的X坐标: " + mouse.x + "\n当前距离canvas的Y坐标: " + mouse.y);
+        }, false);
+
+    }
+</script>
+</body>
+</html>

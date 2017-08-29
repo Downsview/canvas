@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户交互</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById('canvas');
+
+        //定义的执行函数add
+        function add(event) {
+          console.log('mousedown');
+        }
+
+        //绑定mousedown事件
+        canvas.addEventListener('mousedown', add, false);
+
+        //移除mousedown事件
+        canvas.removeEventListener('mousedown', add, false);
+
+    }
+</script>
+</body>
+</html>

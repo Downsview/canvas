@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三角函数</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/arrow.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                centerX = canvas.width / 2,
+                centerY = canvas.height / 2;
+
+        //传入canvas,获取鼠标在canvas上移动时的坐标
+        var mouse = utils.captureMouse(canvas);
+
+        //新建一个arrow对象
+        var arrow = new Arrow();
+
+        //将arrow的坐标设置为canvas的中心
+        arrow.x = centerX;
+        arrow.y = centerY;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            //获取dx,dy的值
+            var dx = mouse.x - arrow.x;
+            var dy = mouse.y - arrow.y;
+
+            //设置旋转角度
+            arrow.rotation = Math.atan2(dy, dx);
+
+            //调用draw方法画出
+            arrow.draw(context);
+        }());
+
+    }
+</script>
+</body>
+</html>
