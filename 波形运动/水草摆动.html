@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水草摆动</title>
+</head>
+<body>
+<canvas id="canvas" style="background: #5A92AF">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/aquatic.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d');
+
+        canvas.width = 800;
+        canvas.height = 400;
+
+        var oAqu = new Aqu();
+        oAqu.init(canvas);
+
+        var oldTime = new Date().getTime(),
+                del = null, newTime = null;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            newTime = new Date().getTime();
+            del = new Date().getTime() - oldTime;
+            oldTime = newTime;
+
+            oAqu.draw(context, del);
+        }());
+
+    }
+</script>
+</body>
+</html>
