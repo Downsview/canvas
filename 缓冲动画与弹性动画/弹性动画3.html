@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性动画3</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500" style="background-color:#000;">
+    your browser not support canvas
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas"),
+                context = canvas.getContext("2d"),
+                ball = new Ball(20, "orange"),
+                mouse = utils.captureMouse(canvas),
+                vx = 0,
+                vy = 0,
+                ax = 0,
+                ay = 0,
+                dx,
+                dy,
+                spring = 0.05,
+                f = 0.95;  //在运动中加入摩擦力
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            dx = mouse.x - ball.x;
+            dy = mouse.y - ball.y;
+            ax = dx * spring;
+            ay = dy * spring;
+
+            vx += ax;
+            vy += ay;
+
+            vx *= f;
+            vy *= f;
+
+            ball.x += vx;
+            ball.y += vy;
+
+            ball.draw(context);
+        }());
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>边界环绕</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="background:#000">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/spaceShip.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas"),
+                context = canvas.getContext("2d");
+        //创建太空船
+        var spaceShip = new SpaceShip();
+        spaceShip.x = canvas.width / 2;
+        spaceShip.y = canvas.height / 2;
+
+        //初始化变量
+        var vr = 0,
+                vx = 0,
+                vy = 0,
+                ax = 0,
+                ay = 0,
+                angle = 0,
+                thrust = 0;  //推力
+
+        //通过方向键控制各变量的值
+        window.addEventListener("keydown", function (event) {
+            switch (event.keyCode) {
+                case 37:  //left
+                    vr = -3;
+                    break;
+                case 38: //up
+                    spaceShip.showFlame = true;
+                    thrust = 0.05;
+                    break;
+                case 39:  //right
+                    vr = 3;
+                    break;
+                case 40:  //down
+                    thrust -= 0.02;
+                    break;
+            }
+        }, false);
+
+        window.addEventListener("keyup", function (event) {
+            vr = 0;
+            thrust = 0;
+            spaceShip.showFlame = false;
+        }, false);
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            //角度
+            spaceShip.rotation += Math.PI / 180 * vr;
+
+            angle = spaceShip.rotation;
+
+            ax = Math.cos(angle) * thrust;
+            ay = Math.sin(angle) * thrust;
+
+            vx += ax;
+            vy += ay;
+
+            spaceShip.x += vx;
+            spaceShip.y += vy;
+
+            //核心部分
+            if(spaceShip.x - spaceShip.width/2 > canvas.width){
+                spaceShip.x = 0;
+            }
+            if(spaceShip.x < 0){
+                spaceShip.x = canvas.width;
+            }
+            if(spaceShip.y - spaceShip.height/2> canvas.height){
+                spaceShip.y = 0;
+            }
+            if(spaceShip.y <0){
+                spaceShip.y = canvas.height;
+            }
+
+            spaceShip.draw(context);
+        }());
+
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>摩擦力2</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="background:#000">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/spaceShip.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d');
+
+        //创建太空船
+        var spaceShip = new SpaceShip();
+        spaceShip.x = canvas.width / 2;
+        spaceShip.y = canvas.height / 2;
+
+        //初始化变量
+        var vr = 0,
+                vx = 0,
+                vy = 0,
+                ax = 0,
+                ay = 0,
+                angle = 0,
+                f = 0.97,   //摩擦力
+                speed = 0;  //速度
+
+        //通过方向键控制各变量的值
+        window.addEventListener('keydown', function (event) {
+            switch (event.keyCode) {
+                case 37:    //left
+                    vr = -3;
+                    break;
+                case 38:    //up
+                    spaceShip.showFlame = true;
+                    speed = 0.5;
+                    break;
+                case 39:    //right
+                    vr += 3;
+                    break;
+            }
+        }, false);
+
+        window.addEventListener('keyup', function(event){
+            vr = 0;
+            speed = 0;
+            spaceShip.showFlame = false;
+        }, false);
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            //角度
+            spaceShip.rotation += Math.PI / 180 * vr;
+
+            angle = spaceShip.rotation;
+
+            ax = Math.cos(angle) * speed;
+            ay = Math.sin(angle) * speed;
+
+            vx += ax;
+            vy += ay;
+
+            //摩擦力
+            if(Math.abs(vx) > 0.001) {
+                vx *= f;
+                spaceShip.x += vx;
+            }
+            if(Math.abs(vy) > 0.001) {
+                vy *= f;
+                spaceShip.y += vy;
+            }
+
+            //边界检测
+            if (spaceShip.x + spaceShip.width / 2 > canvas.width) {
+                spaceShip.x = canvas.width - spaceShip.width / 2;
+                vx *= -1;
+            } else if (spaceShip.x < spaceShip.width / 2) {
+                spaceShip.x = spaceShip.width / 2;
+                vx *= -1;
+            }
+            if (spaceShip.y + spaceShip.height / 2 > canvas.height) {
+                spaceShip.y = canvas.height - spaceShip.height / 2;
+                vy *= -1;
+            } else if (spaceShip.y < spaceShip.height / 2) {
+                spaceShip.y = spaceShip.height / 2;
+                vy *= -1;
+            }
+
+            spaceShip.draw(context);
+        }());
+    }
+</script>
+</body>
+</html>

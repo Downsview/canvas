@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性动画1</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="background:#000">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                ball = new Ball(20, "red"),
+                spring = 0.03,
+                targetX = canvas.width / 2,
+                vx = 0;
+
+        ball.y = canvas.height / 2;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            var dx = targetX - ball.x,
+                    ax = dx * spring;
+
+            vx += ax;
+            ball.x += vx;
+
+            ball.draw(context);
+        }());
+    }
+</script>
+</body>
+</html>

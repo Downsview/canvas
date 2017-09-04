@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平滑运动</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d');
+
+        //创建小球
+        var ball = new Ball();
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+
+        //初始角度
+        var angle = 0;
+
+        //振幅
+        var range = 50;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            ball.x = canvas.width / 2 + Math.sin(angle) * range;
+            angle += 0.02;
+
+            ball.draw(context);
+        }());
+
+    }
+</script>
+</body>
+</html>

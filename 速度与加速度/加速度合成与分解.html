@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加速度合成与分解</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d');
+
+        //新建一个ball对象
+        var ball = new Ball(20);
+
+        //将ball的坐标设置为canvas的中心
+        ball.x = 0;
+        ball.y = 0;
+
+        var vx = 0, vy = 0,       //初始速度为0
+                ax = 0, ay = 0,   //分加速度为0
+                angle = 30,       //运动方向
+                aTotal = 0.05;    //定义合加速度的大小
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            //加速度分解
+            ax = Math.cos(angle) * aTotal;
+            ay = Math.sin(angle) * aTotal;
+
+            vx += ax;
+            vy += ay;
+
+            ball.x += vx;
+            ball.y += vy;
+
+            //调用ball的draw方法
+            ball.draw(context);
+        }());
+
+    }
+</script>
+</body>
+</html>

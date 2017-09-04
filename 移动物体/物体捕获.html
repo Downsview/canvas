@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>物体捕获</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500" style="background-color:#000;">
+    your browser not support canvas
+</canvas>
+<textarea name="log" id="log" cols="30" rows="10"></textarea>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                log = document.getElementById('log');
+
+        //传入canvas，获取鼠标坐标
+        var mouse = utils.captureMouse(canvas);
+
+        //创建小球
+        var ball = new Ball();
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+
+        //绘制小球
+        ball.draw(context);
+
+        //定义状态函数
+        function state(word) {
+          if(utils.containsPoint(ball.getBounds(), mouse.x, mouse.y)) {
+              log.value = "in ball: " + word;
+          } else {
+              log.value = "in canvas: " + word;
+          }
+        }
+
+        //为canvas添加mousedown事件
+        canvas.addEventListener('mousedown', function(event) {
+            state("mousedown");
+
+            //为canvas添加mouseup事件
+            canvas.addEventListener('mouseup', function(event) {
+                state("mouseup");
+            }, false);
+
+            //为canvas添加mousemove事件
+            canvas.addEventListener('mousemove', function(event) {
+                state("mousemove");
+            }, false);
+        }, false);
+    }
+</script>
+</body>
+</html>

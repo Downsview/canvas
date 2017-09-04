@@ -109,3 +109,9 @@ if(!window.cancelAnimationFrame) {
             window.oCancelAnimationFrame ||
             window.clearTimeout
 }
+
+//判定当前鼠标位置与物体位置的相对关系，如果在物体内部，则返回true，否则返回false
+window.utils.containsPoint = function(rect, x, y) {
+    return !(x < rect.x || x > rect.x + rect.width || y < rect.y || y > rect.y + rect.height);
+}
+

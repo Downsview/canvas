@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跟随鼠标移动</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/arrow.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                centerX = canvas.width / 2,
+                centerY = canvas.height / 2;
+
+        //传入canvas,获取鼠标在canvas上移动时的坐标
+        var mouse = utils.captureMouse(canvas);
+
+        //新建一个arrow对象
+        var arrow = new Arrow();
+
+        //将arrow的坐标设置为canvas的中心
+        arrow.x = centerX;
+        arrow.y = centerY;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            //获取dx,dy的值
+            var dx = mouse.x - arrow.x,
+                    dy = mouse.y - arrow.y,
+            //设置移动速度
+                    speed = 2,
+
+            //获取旋转角度
+                    angle = Math.atan2(dy, dx),
+
+            //设置水平和垂直速度
+                    vx = Math.cos(angle) * speed,
+                    vy = Math.sin(angle) * speed;
+
+            //设置旋转角度
+            arrow.rotation = angle;
+
+            arrow.x += vx;
+            arrow.y += vy;
+
+            //调用draw方法画出
+            arrow.draw(context);
+        }());
+
+    }
+</script>
+</body>
+</html>

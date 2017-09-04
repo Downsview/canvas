@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>椭圆运动</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                centerX = canvas.width / 2,
+                centerY = canvas.height /2
+                angle = 0,       //旋转角度
+                speed = 0.05,    //每帧旋转角度的增量
+                radiusX = 100,   //定义X轴半径
+                radiusY = 50;    //定义Y轴半径
+
+
+        //创建小球
+        var ball = new Ball();
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            ball.x = centerX + Math.cos(angle) * radiusX;
+            ball.y = centerY + Math.sin(angle) * radiusY;
+            angle += speed;
+
+            ball.draw(context);
+        }());
+
+    }
+</script>
+</body>
+</html>

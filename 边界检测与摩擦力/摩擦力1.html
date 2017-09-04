@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>摩擦力1</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="background:#000">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d');
+
+        //新建一个小球
+        var ball = new Ball(20, "red");
+        ball.x = canvas.width / 4;
+        ball.y = canvas.height / 4;
+
+        var f = 0.97, speed = 0, angle = 0; //设定摩擦力
+
+        var vx = Math.random() * 10 + 5;
+        var vy = Math.random() * 10 + 5;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            speed = Math.sqrt(vx * vx + vy * vy);
+            angle = Math.atan2(vy, vx);
+
+            if(speed > f) {
+                speed *= f;
+            }else {
+                speed = 0;
+            }
+
+            vx = Math.cos(angle) * speed;
+            vy = Math.sin(angle) * speed;
+
+            ball.x += vx;
+            ball.y += vy;
+
+            ball.draw(context);
+
+        }());
+    }
+</script>
+</body>
+</html>

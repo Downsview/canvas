@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>线性运动</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+    <p>your browser does not support canvas!</p>
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                angle = 0,
+                xspeed = 1,
+                yspeed = 0.05,
+                range = 50;
+
+
+        //创建小球
+        var ball = new Ball();
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            ball.x += xspeed;   //沿X轴方向水平移动
+
+            if(ball.x > canvas.width + ball.radius) {
+                ball.x = -ball.radius;
+            }
+
+            ball.y = canvas.height / 2 + Math.sin(angle) * range;
+            angle += yspeed;
+
+            ball.draw(context);
+        }());
+
+    }
+</script>
+</body>
+</html>

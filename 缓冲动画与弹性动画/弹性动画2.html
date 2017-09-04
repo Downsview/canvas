@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性动画2</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500" style="background-color:#000;">
+    your browser not support canvas
+</canvas>
+<button id="btn">click</button>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas"),
+                context = canvas.getContext("2d"),
+                btn = document.getElementById("btn"),
+                ball = new Ball(20, "orange"),
+                vx = 0,
+                ax = 0,
+                dx,
+                isClick = false,
+                targetX = canvas.width / 2,
+                spring = 0.05,
+                f = 0.95;  //在运动中加入摩擦力
+
+        ball.y = canvas.width / 2;
+        btn.onclick = function () {
+            isClick = true;
+            if (isClick) {
+                (function drawFrame() {
+                    window.requestAnimationFrame(drawFrame);
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    dx = targetX - ball.x;
+                    ax = dx * spring;
+
+                    vx += ax;
+
+                    vx *= f;
+
+                    ball.x += vx;
+
+                    ball.draw(context);
+
+                }());
+            }
+        }
+
+    }
+</script>
+</body>
+</html>
