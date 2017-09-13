@@ -46,8 +46,8 @@ Line.prototype.getBounds = function () {
     } else {
         var sin = Math.sin(this.rotation),
             cos = Math.cos(this.rotation),
-            x1r = cos * this.x1 - sin * this.y1,
-            x2r = cos * this.x2 - sin * this.y2,
+            x1r = cos * this.x1 + sin * this.y1,
+            x2r = cos * this.x2 + sin * this.y2,
             y1r = cos * this.y1 + sin * this.x1,
             y2r = cos * this.y2 + sin * this.x2;
 
