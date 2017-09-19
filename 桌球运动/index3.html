@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>桌球运动</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500" style="background:#45cb96;">
+    your browser does not support canvas!
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d');
+
+        var balls = [],
+                numBalls = 40,
+                long = 85,
+                bounce = -1.0;
+
+
+        for (var i = 0; i < numBalls; i++) {
+            var radius = Math.random() * 5 + 5;
+            var ball = new Ball(radius, "#fff");
+            ball.mass = Math.random() * 5 + 2;
+            ball.x = Math.random() * canvas.width;
+            ball.y = Math.random() * canvas.height;
+            ball.vx = Math.random() * 6 - 3;
+            ball.vy = Math.random() * 6 - 3;
+            balls.push(ball);
+        }
+
+        
+    }
+</script>
+</body>
+</html>
