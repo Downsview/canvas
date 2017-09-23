@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万有引力</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="500" style="background:#000;">
+    your browser does not support canvas!
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                particles = [],
+                numParticles = 50;
+
+        //创建粒子
+        for (var particle, i = 0; i < numParticles; i++) {
+            particle = new Ball(5, "orange");
+            particle.x = Math.random() * canvas.width;
+            particle.y = Math.random() * canvas.height;
+            particle.mass = 1;
+            particles.push(particle);
+        }
+
+        //绘制粒子
+        function draw(particle) {
+            particle.draw(context);
+        }
+
+        function gravitate(partA, partB) {
+            var dx = partB.x - partA.x,
+                    dy = partB.y - partA.y,
+                    distQ = dx * dx + dy * dy,                   //粒子之间距离的平方
+                    dist = Math.sqrt(distQ),                     //粒子之间的距离
+                    F = (partA.mass * partB.mass) / distQ;       //万有引力公式
+
+            var Fx = F * dx / dist;                             //水平方向的引力
+            var Fy = F * dy / dist;                             //垂直方向的引力
+
+            partA.vx += Fx / partA.mass;
+            partA.vy += Fy / partA.mass;
+            partB.vx -= Fx / partB.mass;
+            partB.vy -= Fy / partB.mass
+        }
+
+        //控制旋转
+        function rotate(x, y, sin, cos, reverse) {
+            return {
+                x: reverse ? (x * cos + y * sin) : (x * cos - y * sin),
+                y: reverse ? (y * cos - x * sin) : (y * cos + x * sin)
+            };
+        }
+
+        //碰撞检测
+        function checkCollision(ball0, ball1) {
+            var dx = ball1.x - ball0.x,
+                    dy = ball1.y - ball0.y,
+                    dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < ball0.radius + ball1.radius) {
+                var angle = Math.atan2(dy, dx),
+                        sin = Math.sin(angle),
+                        cos = Math.cos(angle);
+
+                //ball0旋转后的位置
+                var pos0 = {
+                    x: 0,
+                    y: 0
+                };
+
+                //ball1旋转后的位置
+                var pos1 = rotate(dx, dy, sin, cos, true);
+
+                //ball0旋转后的速度
+                var vel0 = rotate(ball0.vx, ball0.vy, sin, cos, true);
+
+                //ball1旋转后的速度
+                var vel1 = rotate(ball1.vx, ball1.vy, sin, cos, true);
+
+                //碰撞反应
+                var vTotal = vel0.x - vel1.x;
+                vel0.x = ((ball0.mass - ball1.mass) * vel0.x + 2 * ball1.mass * vel1.x) / (ball0.mass + ball1.mass);
+                vel1.x = vTotal + vel0.x;
+
+                //更新位置，避免小球卡在一起
+                pos0.x += vel0.x;
+                pos1.x += vel1.x;
+
+                //旋转回去后的位置
+                var pos0F = rotate(pos0.x, pos0.y, sin, cos, false);
+                var pos1F = rotate(pos1.x, pos1.y, sin, cos, false);
+
+                //调整位置到实际坐标
+                ball0.x = ball0.x + pos0F.x;
+                ball0.y = ball0.y + pos0F.y;
+                ball1.x = ball0.x + pos1F.x;
+                ball1.y = ball0.y + pos1F.y;
+
+                //旋转回去之后的速度
+                var vel0F = rotate(vel0.x, vel0.y, sin, cos, false);
+                var vel1F = rotate(vel1.x, vel1.y, sin, cos, false);
+
+                ball0.vx = vel0F.x;
+                ball0.vy = vel0F.y;
+                ball1.vx = vel1F.x;
+                ball1.vy = vel1F.y;
+            }
+
+        }
+
+        //移动粒子
+        function move(partA, i) {
+            partA.x += partA.vx;
+            partA.y += partA.vy;
+
+            for (var partB, j = i + 1; j < numParticles; j++) {
+                partB = particles[j];
+                //碰撞检测
+                checkCollision(partA, partB);
+                //引力
+                gravitate(partA, partB);
+            }
+        }
+
+        //动画循环
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(move);
+            particles.forEach(draw);
+        }());
+
+    }
+</script>
+</body>
+</html>

@@ -4,6 +4,7 @@
 
 //小球类
 function Ball(radius, color) {
+    this.name = "";
     this.radius = radius || 40;
     this.color = utils.parseColor(color) || "#0f0";
     this.x = 0;

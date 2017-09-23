@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万有引力</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="background:#000;">
+    your browser does not support canvas!
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                particles = [],
+                numParticles = 60,
+                minDist = 80,
+                springAmount = 0.001;
+
+        for (var i = 0; i < numParticles; i++) {
+            var radius = Math.random() * 5 + 5;
+            var particle = new Ball(radius, "#fff");
+            particle.x = Math.random() * canvas.width;
+            particle.y = Math.random() * canvas.height;
+            particle.vx = Math.random() * 6 - 3;
+            particle.vy = Math.random() * 6 - 3;
+            particles.push(particle);
+        }
+
+        function rotate(x, y, sin, cos, reverse) {
+            return {
+                x: reverse ? (x * cos + y * sin) : (x * cos - y * sin),
+                y: reverse ? (y * cos - x * sin) : (y * cos + x * sin)
+            };
+        }
+
+        function checkCollision(ball0, ball1) {
+            var dx = ball1.x - ball0.x,
+                    dy = ball1.y - ball0.y,
+                    dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < ball0.radius + ball1.radius) {
+                var angle = Math.atan2(dy, dx),
+                        sin = Math.sin(angle),
+                        cos = Math.cos(angle);
+
+                //ball0旋转后的位置
+                var pos0 = {
+                    x: 0,
+                    y: 0
+                };
+
+                //ball1旋转后的位置
+                var pos1 = rotate(dx, dy, sin, cos, true);
+
+                //ball0旋转后的速度
+                var vel0 = rotate(ball0.vx, ball0.vy, sin, cos, true);
+
+                //ball1旋转后的速度
+                var vel1 = rotate(ball1.vx, ball1.vy, sin, cos, true);
+
+                //碰撞反应
+                var vTotal = vel0.x - vel1.x;
+                vel0.x = ((ball0.mass - ball1.mass) * vel0.x + 2 * ball1.mass * vel1.x) / (ball0.mass + ball1.mass);
+                vel1.x = vTotal + vel0.x;
+
+                //更新位置，避免小球卡在一起
+                pos0.x += vel0.x;
+                pos1.x += vel1.x;
+
+                //旋转回去后的位置
+                var pos0F = rotate(pos0.x, pos0.y, sin, cos, false);
+                var pos1F = rotate(pos1.x, pos1.y, sin, cos, false);
+
+                //调整位置到实际坐标
+                ball0.x = ball0.x + pos0F.x;
+                ball0.y = ball0.y + pos0F.y;
+                ball1.x = ball0.x + pos1F.x;
+                ball1.y = ball0.y + pos1F.y;
+
+                //旋转回去之后的速度
+                var vel0F = rotate(vel0.x, vel0.y, sin, cos, false);
+                var vel1F = rotate(vel1.x, vel1.y, sin, cos, false);
+
+                ball0.vx = vel0F.x;
+                ball0.vy = vel0F.y;
+                ball1.vx = vel1F.x;
+                ball1.vy = vel1F.y;
+            }
+        }
+
+        function gravitate(partA, partB) {
+            var dx = partB.x - partA.x,
+                    dy = partB.y - partA.y,
+                    distQ = dx * dx + dy * dy,
+                    dist = Math.sqrt(distQ),
+                    F = partA.mass * partB.mass / distQ;
+
+            if(dist < minDist) {
+                context.save();
+                context.strokeStyle = "rgba(255,255,255,0.5)";
+                context.beginPath();
+                context.moveTo(partA.x, partA.y);
+                context.lineTo(partB.x, partB.y);
+                context.closePath();
+                context.stroke();
+                context.restore();
+            }
+
+            var Fx = F * dx / dist * springAmount;
+            var Fy = F * dy / dist * springAmount;
+
+            partA.vx += Fx / partA.mass;
+            partA.vy += Fy / partA.mass;
+            partB.vx -= Fx / partB.mass;
+            partB.vy -= Fy / partB.mass;
+        }
+
+        function move(partA, i) {
+            partA.x += partA.vx;
+            partA.y += partA.vy;
+
+            if (partA.x - partA.radius > canvas.width) {
+                partA.x = -partA.radius;
+            } else if (partA.x + partA.radius < 0) {
+                partA.x = canvas.width + partA.radius;
+            }
+            if (partA.y - partA.radius > canvas.height) {
+                partA.y = -partA.radius;
+            } else if (partA.y + partA.radius < 0) {
+                partA.y = canvas.height + partA.radius;
+            }
+
+            for (var partB, j = i + 1; j < numParticles; j++) {
+                partB = particles[j];
+                checkCollision(partA, partB);
+                gravitate(partA, partB);
+            }
+        }
+
+        function draw(particle) {
+            particle.draw(context);
+        }
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(move);
+            particles.forEach(draw);
+        }());
+    }
+</script>
+</body>
+</html>
