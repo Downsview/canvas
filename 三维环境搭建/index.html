@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三维环境搭建</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="background:#000;">
+    your browser does not support canvas!
+</canvas>
+<script src="../utils/utils.js"></script>
+<script src="../utils/ball.js"></script>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                ball = new Ball(40, "red"),
+                mouse = utils.captureMouse(canvas);
+
+        var xpos = 0,
+                ypos = 0,
+                zpos = 0,           //物体的3D坐标
+                fl = 250,           //距离屏幕的距离(焦距)
+                vpX = canvas.width / 2,    //消失点横坐标
+                vpY = canvas.height / 2;   //消失点纵坐标
+
+        window.addEventListener('keydown', function (event) {
+            switch (event.keyCode) {
+                case 38:   //up
+                    zpos += 5;
+                    break;
+                case 40:   //down
+                    zpos -= 5;
+                    break;
+                default:
+                    break;
+            }
+        }, false);
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (zpos > -fl) {
+                var scale = fl / (fl + zpos);        //缩放比例
+                xpos = mouse.x - vpX;
+                ypos = mouse.y - vpY;
+                ball.scaleX = ball.scaleY = scale;
+                ball.x = vpX + xpos * scale;
+                ball.y = vpY + ypos * scale;         //物体大小变化
+                ball.visible = true;                //物体可见
+            } else {
+                ball.visible = false;               //物体不可见
+            }
+
+            if (ball.visible) {
+                ball.draw(context);
+            }
+        }());
+    }
+</script>
+</body>
+</html>

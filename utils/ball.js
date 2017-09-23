@@ -16,6 +16,7 @@ function Ball(radius, color) {
     this.scaleX = 1;
     this.scaleY = 1;
     this.lineWidth = 1;
+    this.visible = true;
 }
 
 Ball.prototype.draw = function(context) {
