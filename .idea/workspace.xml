@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b263ef44-443c-45d6-84eb-4bf3578bc0f0" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/3D物理效果/单物体反弹.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3D物理效果/单物体反弹.html" afterPath="$PROJECT_DIR$/3D物理效果/单物体反弹.html" />
     </list>
     <ignored path="canvas.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +58,8 @@
       <file leaf-file-name="单物体反弹.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/3D物理效果/单物体反弹.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52970296">
-              <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.7289604">
+              <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#canvas#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -386,7 +385,7 @@
     <property name="js-jscs-nodeInterpreter" value="D:\nodejs\node.exe" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.常规" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="E:/workSpace/oa_frontend" />
+    <property name="last_opened_file_path" value="E:/workSpace/haoqianbaooperate-frontend" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -852,8 +851,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/3D物理效果/单物体反弹.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52970296">
-          <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.7289604">
+          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#canvas#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>

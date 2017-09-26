@@ -20,9 +20,9 @@
                 zpos = 0,
                 vpX = canvas.width / 2,
                 vpY = canvas.height / 2,
-                vx = Math.random() * 6 - 3,
-                vy = Math.random() * 6 - 3,
-                vz = Math.random() * 6 - 3,
+                vx = Math.random() * 2 - 1,
+                vy = Math.random() * 2 - 1,
+                vz = Math.random() * 2 - 1,
                 fl = 250,
                 top = -100,
                 bottom = 100,
@@ -33,7 +33,9 @@
                 bounce = -1;
 
         (function drawFrame() {
+            //context.fillStyle = 'rgba(0, 0, 0, .3)';
             window.requestAnimationFrame(drawFrame);
+            //context.fillRect(0, 0, canvas.width, canvas.height);
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             xpos += vx;
