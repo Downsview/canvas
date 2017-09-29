@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b263ef44-443c-45d6-84eb-4bf3578bc0f0" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/3D物理效果/多物体反弹(Z轴排序).html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3D物理效果/多物体反弹.html" afterPath="$PROJECT_DIR$/3D物理效果/多物体反弹.html" />
-    </list>
+    <list default="true" id="b263ef44-443c-45d6-84eb-4bf3578bc0f0" name="默认的" comment="" />
     <ignored path="canvas.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,8 +78,8 @@
       <file leaf-file-name="多物体反弹(Z轴排序).html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/3D物理效果/多物体反弹(Z轴排序).html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7592166">
-              <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.671659">
+              <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -881,8 +877,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/3D物理效果/多物体反弹(Z轴排序).html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7592166">
-          <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.671659">
+          <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
           <folding />
         </state>
       </provider>
