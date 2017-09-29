@@ -92,20 +92,39 @@ window.utils.captureTouch = function (element) {
 }
 
 //转换颜色
-window.utils.parseColor = function(color, toNumber) {
-    if(toNumber === true) {
-        if(typeof color === 'number') {
+window.utils.parseColor = function (color, toNumber) {
+    if (toNumber === true) {
+        if (typeof color === 'number') {
             return (color | 0);
         }
-        if(typeof color === 'string' && color[0] === '#') {
+        if (typeof color === 'string' && color[0] === '#') {
             color = color.slice(1);
         }
         return window.parseInt(color, 16);
     } else {
-        if(typeof color === 'number') {
+        if (typeof color === 'number') {
             color = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
         }
         return color;
+    }
+}
+
+//将16进制颜色转换成rgb
+window.utils.colorToRGB = function (color, alpha) {
+    if (typeof color === 'string' && color[0] === '#') {
+        color = window.parseInt(color.slice(1), 16);
+    }
+    alpha = (alpha === undefined) ? 1 : alpha;
+
+    var r = color >> 16 & 0xff;
+    var g = color >> 8 & 0xff;
+    var b = color & 0xff;
+    var a = (alpha < 0) ? 0 : ((alpha > 1) ? 1 : alpha);
+
+    if (a === 1) {
+        return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    } else {
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
     }
 }
 
@@ -120,21 +139,21 @@ if (!window.requestAnimationFrame) {
         }
 }
 
-if(!window.cancelAnimationFrame) {
+if (!window.cancelAnimationFrame) {
     window.cancelAnimationFrame = window.webkitCancelAnimationFrame ||
-            window.mozCancelAnimationFrame ||
-            window.msCancelAnimationFrame ||
-            window.oCancelAnimationFrame ||
-            window.clearTimeout
+        window.mozCancelAnimationFrame ||
+        window.msCancelAnimationFrame ||
+        window.oCancelAnimationFrame ||
+        window.clearTimeout
 }
 
 //判定当前鼠标位置与物体位置的相对关系，如果在物体内部，则返回true，否则返回false
-window.utils.containsPoint = function(rect, x, y) {
+window.utils.containsPoint = function (rect, x, y) {
     return !(x < rect.x || x > rect.x + rect.width || y < rect.y || y > rect.y + rect.height);
 }
 
 //判定两个物体是否碰撞
-window.utils.intersects = function(rectA, rectB) {
+window.utils.intersects = function (rectA, rectB) {
     return !(rectA.x + rectA.width < rectB.x || rectB.x + rectB.width < rectA.x || rectA.y + rectA.height < rectB.y || rectB.y + rectB.height < rectA.y);
 }
 
