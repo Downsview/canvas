@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>多物体反弹</title>
+    <title>多物体反弹(Z轴排序)</title>
 </head>
 <body>
 <canvas id="canvas" width="1000" height="600" style="background:#000;">
@@ -74,6 +74,13 @@
                 ball.visible = false;
             }
 
+        }
+
+        function sort(a, b) {
+            return b.zpos - a.zpos;
+        }
+
+        function draw(ball) {
             if(ball.visible) {
                 ball.draw(context);
             }
@@ -83,7 +90,9 @@
             window.requestAnimationFrame(drawFrame);
             context.clearRect(0, 0, canvas.width, canvas.height);
 
+            balls.forEach(sort);
             balls.forEach(move);
+            balls.forEach(draw);
         }());
     }
 </script>
