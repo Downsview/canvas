@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b263ef44-443c-45d6-84eb-4bf3578bc0f0" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/森林与星海/无限森林.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/ball3d-s.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/森林与星海/星海.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="canvas.iws" />
@@ -24,40 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="速度与加速度.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3D物理效果/速度与加速度.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-              <folding>
-                <element signature="n#style#0;n#canvas#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="单物体反弹.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3D物理效果/单物体反弹.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="42" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
-              <folding>
-                <element signature="n#style#0;n#canvas#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="多物体反弹.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/3D物理效果/多物体反弹.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="多物体反弹(Z轴排序).html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/3D物理效果/多物体反弹(Z轴排序).html">
           <provider selected="true" editor-type-id="text-editor">
@@ -122,14 +89,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="无限森林.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="无限森林.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/森林与星海/无限森林.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.562212">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state vertical-scroll-proportion="-20.821428">
+              <caret line="97" column="9" selection-start-line="76" selection-start-column="8" selection-end-line="97" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#canvas#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ball3d.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/ball3d.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ball3d-s.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/ball3d-s.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="星海.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/森林与星海/星海.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40898618">
+              <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -172,7 +169,6 @@
         <option value="$PROJECT_DIR$/万有引力/index.html" />
         <option value="$PROJECT_DIR$/3D物理效果/速度与加速度.html" />
         <option value="$PROJECT_DIR$/3D物理效果/单物体反弹.html" />
-        <option value="$PROJECT_DIR$/utils/ball3d.js" />
         <option value="$PROJECT_DIR$/3D物理效果/多物体反弹.html" />
         <option value="$PROJECT_DIR$/3D物理效果/多物体反弹(Z轴排序).html" />
         <option value="$PROJECT_DIR$/森林与星海/重力.html" />
@@ -182,6 +178,9 @@
         <option value="$PROJECT_DIR$/森林与星海/自然树.html" />
         <option value="$PROJECT_DIR$/utils/natureTree.js" />
         <option value="$PROJECT_DIR$/森林与星海/无限森林.html" />
+        <option value="$PROJECT_DIR$/utils/ball3d.js" />
+        <option value="$PROJECT_DIR$/utils/ball3d-s.js" />
+        <option value="$PROJECT_DIR$/森林与星海/星海.html" />
       </list>
     </option>
   </component>
@@ -470,8 +469,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\canvas\森林与星海" />
-      <recent name="E:\canvas\3D物理效果" />
       <recent name="E:\canvas\utils" />
+      <recent name="E:\canvas\3D物理效果" />
       <recent name="E:\canvas\桌球运动" />
       <recent name="E:\canvas\碰撞检测" />
     </key>
@@ -591,20 +590,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/用户交互/index3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/用户交互/index4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="41" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -872,14 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/ball3d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69977677">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3D物理效果/多物体反弹.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -963,13 +940,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/ball3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/ball3d-s.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/森林与星海/无限森林.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.562212">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state vertical-scroll-proportion="-20.821428">
+          <caret line="97" column="9" selection-start-line="76" selection-start-column="8" selection-end-line="97" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#canvas#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/森林与星海/星海.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40898618">
+          <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
