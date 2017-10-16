@@ -7,7 +7,7 @@ function ranColor() {
 }
 
 /*
- spread: 树杈分支数
+ spread: 树杈展开范围
  */
 
 //自然树
